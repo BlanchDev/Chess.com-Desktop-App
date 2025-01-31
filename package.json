@@ -1,0 +1,77 @@
+{
+  "name": "chesscom",
+  "productName": "Chess",
+  "description": "Chess.com Desktop App",
+  "author": "blanch.dev",
+  "license": "Commons Clause & MIT License",
+  "keywords": [
+    "chess",
+    "chess.com",
+    "chesscom",
+    "blanch.dev"
+  ],
+  "version": "1.0.0",
+  "type": "module",
+  "main": "electron/main.js",
+  "scripts": {
+    "dev:react": "vite --host",
+    "build:react": "vite build",
+    "dev:electron": "cross-env NODE_ENV=development electron .",
+    "dev:all": "concurrently \"bun dev:react\" \"bun wait-port 5173 && bun run dev:electron\"",
+    "build:all": "rm -rf dist-electron && bun run build:react && electron-builder"
+  },
+  "dependencies": {
+    "auto-launch": "^5.0.6",
+    "electron-store": "^8.2.0",
+    "motion": "^11.18.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.26.7",
+    "@babel/plugin-transform-react-jsx": "^7.25.9",
+    "@babel/preset-env": "^7.26.7",
+    "@babel/preset-react": "^7.26.3",
+    "@eslint/js": "^9.19.0",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^9.1.2",
+    "cross-env": "^7.0.3",
+    "electron": "^33.3.2",
+    "electron-builder": "^24.13.3",
+    "eslint": "^9.19.0",
+    "eslint-plugin-electron": "^7.0.0",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.18",
+    "globals": "^15.14.0",
+    "sass": "^1.83.4",
+    "terser": "^5.37.0",
+    "vite": "^6.0.11",
+    "wait-port": "^1.1.0"
+  },
+  "build": {
+    "appId": "com.chess.desktop",
+    "productName": "Chess",
+    "directories": {
+      "output": "dist-electron"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "electron/assets/chesscom.ico"
+    },
+    "compression": "maximum",
+    "asar": true
+  },
+  "trustedDependencies": [
+    "@parcel/watcher",
+    "cpu-features",
+    "electron",
+    "esbuild"
+  ]
+}
